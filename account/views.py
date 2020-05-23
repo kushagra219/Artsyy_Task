@@ -13,7 +13,7 @@ def SignUp(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('account:home')
+            return redirect('appointment:')
     else:
         form = UserCreateForm()
-    return render(request, 'account/signup.html', {'form': form})
+    return render(request, 'appointment/prescription_create.html', {'form': form})
