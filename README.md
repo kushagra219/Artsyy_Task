@@ -43,7 +43,7 @@ Hospital Management System Multi-User Interface using Django 3
     <td>test@123</td>
     </tr>
     <tr>
-    <td>Recptionist</td>
+    <td>Receptionist</td>
     <td>malti</td>
     <td>test@123</td>
     </tr>
