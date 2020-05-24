@@ -24,5 +24,17 @@ class User(AbstractUser):
         else:
             return False
 
+    def is_receptionist(self):
+        if self.user_type == 'R':
+            return True
+        else:
+            return False
+
+    def is_HR(self):
+        if self.user_type == 'HR':
+            return True
+        else:
+            return False
+
     class Meta:
         ordering = ('id',)

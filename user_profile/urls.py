@@ -7,4 +7,7 @@ app_name = "user_profile"
 
 urlpatterns = [
     path("profile/", views.UpdatedUserProfile, name="profile"),
+    path("profile/create/", views.CreateUserProfile, name="profile-create"),
+    path("profile/<int:pk>/", views.UpdatedUserProfilePk, name="profile-pk"),
+    path("profile/<int:pk>/delete/", views.DeleteUserProfilePk, name="profile-delete"),
 ]

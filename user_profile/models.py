@@ -33,5 +33,9 @@ class UserProfile(models.Model):
     med_reps = models.FileField(upload_to='profile/med_reps', blank=True)
     case_paper = models.IntegerField(blank=True, null=True)
 
+    class Meta:
+        ordering = ('-id',)
+
     def __str__(self):
         return "Profile for {}".format(self.user)
+

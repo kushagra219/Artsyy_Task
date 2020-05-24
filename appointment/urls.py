@@ -11,4 +11,6 @@ urlpatterns = [
     path("medHistory/", views.MedicalHistoryView.as_view(), name="med-history"),
     path("prescriptions/", views.PrescriptionListView.as_view(), name="doc-prescriptions"),
     path("prescription/create", views.PrescriptionCreateView, name="doc-prescriptions-create"),
+    path("appointment/create", views.AppointmentCreateView, name="appointment-create"),
+    path("rdashboard/", views.rdashboard, name="r_dashboard"),
 ]

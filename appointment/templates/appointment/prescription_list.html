@@ -12,6 +12,7 @@
             <h3><strong>{{ obj.date }}</strong></h3>
             <p>Symptoms - {{ obj.symptoms }}</p>
             <p>Prescription - {{ obj.prescription }}</p>
+            <button class="btn btn-primary">Learn More</button>
         </li>
         {% endfor %}
     {% endif %}
@@ -25,7 +26,7 @@
             <h3><strong>{{ obj.date }}</strong></h3>
             <p>Symptoms - {{ obj.symptoms }}</p>
             <p>Prescription - {{ obj.prescription }}</p>
-            <p>Patient - {{ obj.patient }}</p>
+            <p>Patient Name - {{ obj.patient }}</p>
         </li>
         {% endfor %}
     {% endif %}

@@ -3,32 +3,44 @@ from .models import *
 from .forms import * 
 from django.views.generic import ListView, CreateView
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from user_profile.models import UserProfile
 # Create your views here.
 
-
-class AppointmentsForAPatientView(ListView):
+class AppointmentsForAPatientView(LoginRequiredMixin, ListView):
+    login_url = '/login/'
+    redirect_field_name = 'account:login'
 
     def get_queryset(self):
         return Appointment.objects.filter(patient=self.request.user)
 
 
-class AppointmentsForADoctorView(ListView):
+class AppointmentsForADoctorView(LoginRequiredMixin, ListView):
+    login_url = '/login/'
+    redirect_field_name = 'account:login'
 
     def get_queryset(self):
         return Appointment.objects.filter(doctor=self.request.user)
 
 
-class MedicalHistoryView(ListView):
+class MedicalHistoryView(LoginRequiredMixin, ListView):
+    login_url = '/login/'
+    redirect_field_name = 'account:login'
 
     def get_queryset(self):
         return Prescription.objects.filter(patient=self.request.user)
 
 
-class PrescriptionListView(ListView):
+class PrescriptionListView(LoginRequiredMixin, ListView):
+    login_url = '/login/'
+    redirect_field_name = 'account:login'
 
     def get_queryset(self):
         return Prescription.objects.filter(doctor=self.request.user)
 
+
+@login_required(login_url='/login/')
 def PrescriptionCreateView(request):
     if request.method == 'POST':
         form = PrescriptionForm(request.POST)
@@ -40,5 +52,31 @@ def PrescriptionCreateView(request):
     else:
         form = PrescriptionForm()
     return render(request, 'appointment/prescription_create.html', {'form': form})
+
+
+@login_required(login_url='/login/')
+def AppointmentCreateView(request):
+    if request.method == 'POST':
+        form = AppointmentForm(request.POST)
+        if form.is_valid():
+            appointment = form.save(commit=False)
+            appointment.save()
+            return redirect('appointment:r_dashboard')
+    else:
+        form = AppointmentForm()
+    return render(request, 'appointment/appointment_create.html', {'form': form})
+
+
+@login_required(login_url='/login/')
+def rdashboard(request):
+    if request.method == "GET" and request.user.user_type == "R":
+        context = {
+            "totalApp" : len(Appointment.objects.all()),
+            "compApp" : len(Appointment.objects.filter(status="Completed")),
+            "pendApp" : len(Appointment.objects.filter(status="Pending")),
+            "app_list" : Appointment.objects.all(),
+            "pat_list" : UserProfile.objects.filter(user__user_type="P")[:5]
+        }
+        return render(request, 'appointment/r_dashboard.html', context=context)
 
     
