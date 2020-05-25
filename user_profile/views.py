@@ -62,6 +62,20 @@ def UpdatedUserProfilePk(request, pk):
 
 
 @login_required(login_url='/login/')
+def UpdatedDocProfilePk(request, pk):
+    user = User.objects.get(pk=pk)
+    profile = UserProfile.objects.get(user=user)
+    if request.method == 'POST':
+        form = DoctorProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('appointment:hr_dashboard')
+    else:
+        form = DoctorProfileForm(instance=profile)
+    return render(request, 'user_profile/profile.html', {'form': form, 'user':user})
+
+
+@login_required(login_url='/login/')
 def DeleteUserProfilePk(request, pk):
     user = User.objects.get(pk=pk)
     profile = UserProfile.objects.get(user=user)
@@ -70,3 +84,15 @@ def DeleteUserProfilePk(request, pk):
         return redirect('appointment:r_dashboard')
     else:
         return render(request, 'user_profile/profile_delete.html', {'user':user})
+
+
+@login_required(login_url='/login/')
+def DeleteDocProfilePk(request, pk):
+    print("hello")
+    user = User.objects.get(pk=pk)
+    profile = UserProfile.objects.get(user=user)
+    if request.method == 'POST':
+        user.delete()
+        return redirect('appointment:hr_dashboard')
+    else:
+        return render(request, 'user_profile/profile_doc_delete.html', {'user':user})

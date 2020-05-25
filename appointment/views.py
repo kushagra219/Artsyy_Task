@@ -79,4 +79,36 @@ def rdashboard(request):
         }
         return render(request, 'appointment/r_dashboard.html', context=context)
 
+
+@login_required(login_url='/login/')
+def hrdashboard(request):
+    if request.method == "GET" and request.user.user_type == "HR":
+        context = {
+            "totalPat" : len(User.objects.filter(user_type="P")),
+            "totalDoc" : len(User.objects.filter(user_type="D")),
+            "ondutyDoc" : len(UserProfile.objects.filter(status="Active").filter(user__user_type="D")),
+            "doc_list" : UserProfile.objects.filter(user__user_type="D")
+        }
+        return render(request, 'appointment/hr_dashboard.html', context=context)
+
+
+@login_required(login_url='/login/')
+def hraccounting(request):
+    if request.method == "GET" and request.user.user_type == "HR":
+        context = {
+            "payment_ind" : Payment.objects.filter(payment_type="I"),
+            "payment_cons" : Payment.objects.filter(payment_type="C"),
+        }
+        return render(request, 'appointment/accounting.html', context=context)
+
+
+@login_required(login_url='/login/')
+def pateintpayments(request):
+    if request.method == "GET":
+        context = {
+            "payment_me" : Payment.objects.filter(patient=request.user),
+        }
+        return render(request, 'appointment/payment_invoice.html', context=context)
+
+
     

@@ -26,3 +26,22 @@ class Prescription(models.Model):
 
     def __str__(self):
         return "Presciption Doc-{} Patient-{}".format(self.doctor, self.patient)
+
+PAYMENT_TYPES = [
+    ('I','Individual'),
+    ('C','Consulting')
+]
+
+class Payment(models.Model):
+    patient = models.ForeignKey(User, on_delete=models.CASCADE, related_name="patient_payments")
+    date = models.DateField(auto_now_add=True)
+    paid = models.IntegerField(null=True)
+    outstanding = models.IntegerField(null=True)
+    total = models.IntegerField(null=True)
+    payment_type = models.CharField(choices=PAYMENT_TYPES, max_length=1, default="I")
+
+    class Meta:
+        ordering = ('-id',)
+
+    def __str__(self):
+        return "Payment Patient-{} Amount-{}".format(self.patient, self.total)

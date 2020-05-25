@@ -32,6 +32,10 @@ class UserProfile(models.Model):
     blood_group = models.CharField(choices=BLOOD_GROUPS, max_length=3, blank=True)
     med_reps = models.FileField(upload_to='profile/med_reps', blank=True)
     case_paper = models.IntegerField(blank=True, null=True)
+    department = models.CharField(max_length=50, null=True, blank=True)
+    salary = models.IntegerField(null=True, blank=True)
+    attendance = models.IntegerField(null=True, blank=True)
+    status = models.CharField(choices=[('Active', 'Active'), ('Inactive', 'Inactive')], null=True, blank=True, max_length=8)
 
     class Meta:
         ordering = ('-id',)
