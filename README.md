@@ -1,11 +1,11 @@
 # Artsyy_Task
-Hospital Management System Multi-User Interface using Django 3 
+Hospital Management System Multi-User Interface using Django 3 | YouTube Navigation Video - https://youtu.be/LkcKQKeCq2M
 
 ## Development Environment - 
 * Django - 3.0.5 
 * Python - 3.8.2
 * Database - sqlite3
-* IDLE - VS Code (Preferred)
+* IDE - VS Code (Preferred)
 
 ## Getting Started
 * Clone this repository.
@@ -25,12 +25,12 @@ Hospital Management System Multi-User Interface using Django 3
     ~~~
 * Open http://127.0.0.1:8000/ in your browser, login and explore 
 
-## Sample Login Credetials
+## Sample Login Credentials
  <table>
     <thead>
-    <th>User Type</th>
-    <th>username</th>
-    <th>password</th>
+    <th>USER TYPE</th>
+    <th>USERNAME</th>
+    <th>PASSWORD</th>
     </thead>
     <tr>
     <td>Patient</td>
