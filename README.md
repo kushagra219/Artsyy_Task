@@ -1,4 +1,4 @@
-# Artsyy_Task
+# HOSPITAL_MANAGEMENT_SYSTEM
 Hospital Management System Multi-User Interface using Django 3 | YouTube Navigation Video - https://youtu.be/LkcKQKeCq2M
 
 ## Development Environment - 
