@@ -31,6 +31,7 @@
     					<ul class="nav navbar-nav navbar-right mynav">
     						{% if user.is_authenticated %}
                       {% if user.is_doctor %}
+                      <!-- doctor's dashboard -->
                       <li><a href="{% url 'account:home' %}"class="btn btn-simple">Home</a></li>
                       <li><a href="{% url 'account:about-us' %}"class="btn btn-simple">About Us</a></li>
                       <li><a href="{% url 'account:contact' %}"class="btn btn-simple">Contact</a></li>
@@ -40,6 +41,7 @@
     						      <li><a href="{% url 'account:logout' %}" class="btn btn-simple"><button class="btn btn-warning">Log Out</button></a></li>
                       {% endif %}
                       {% if user.is_patient %}
+                      <!-- patient's dashboard -->
                       <li><a href="{% url 'account:home' %}"class="btn btn-simple">Home</a></li>
                       <li><a href="{% url 'account:about-us' %}"class="btn btn-simple">About Us</a></li>
                       <li><a href="{% url 'account:contact' %}"class="btn btn-simple">Contact</a></li>
@@ -50,6 +52,7 @@
     						      <li><a href="{% url 'account:logout' %}" class="btn btn-simple"><button class="btn btn-warning">Log Out</button></a></li> 
                       {% endif %}
                       {% if user.is_receptionist %}
+                      <!-- receptionist's dashboard -->
                       <li><a href="{% url 'account:home' %}"class="btn btn-simple">Home</a></li>
                       <li><a href="{% url 'account:about-us' %}"class="btn btn-simple">About Us</a></li>
                       <li><a href="{% url 'account:contact' %}"class="btn btn-simple">Contact</a></li>
@@ -57,6 +60,7 @@
     						      <li><a href="{% url 'account:logout' %}" class="btn btn-simple"><button class="btn btn-warning">Log Out</button></a></li> 
                       {% endif %}
                       {% if user.is_HR %}
+                      <!-- HR's dashboard -->
                       <li><a href="{% url 'account:home' %}"class="btn btn-simple">Home</a></li>
                       <li><a href="{% url 'account:about-us' %}"class="btn btn-simple">About Us</a></li>
                       <li><a href="{% url 'account:contact' %}"class="btn btn-simple">Contact</a></li>
